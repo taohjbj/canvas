@@ -29,7 +29,7 @@
     var innerdashCircle = new Konva.Circle({
         x: cenX,
         y: cenY,
-        radius: 130,
+        radius: 80,
         stroke: '#ccc',
         dash: [10, 5]
     })
@@ -38,7 +38,7 @@
     var outerdashCircle = new Konva.Circle({
         x: cenX,
         y: cenY,
-        radius: 220,
+        radius: 140,
         stroke: '#ccc',
         dash: [10, 5]
     })
@@ -47,12 +47,12 @@
     var innerCircle = new Rotate({
         x:cenX,
         y:cenY,
-        innerRadius:65,
-        innerFill:'#727898',
-        outerRadius:90,
+        innerRadius:30,
+        innerFill:'#fff',
+        outerRadius:40,
         outerFill:'#ccc',
         text:'iMzhaotao',
-        fontSize:25,
+        fontSize:12,
     })
     innerCircle.addToLayerOrGroup( bgLayer );
     // 创建动画层 2环
@@ -64,30 +64,30 @@
         y:cenY,
     })
     // L2好久不见圆
-    var hjbjx  = 130 * Math.cos( -60 * Math.PI / 180 );
-    var hjbjy = 130 * Math.sin( -60 * Math.PI / 180 );
+    var hjbjx  = 80 * Math.cos( -60 * Math.PI / 180 );
+    var hjbjy = 80 * Math.sin( -60 * Math.PI / 180 );
     var L2_hjbj = new Rotate({
         x:hjbjx,
         y:hjbjy,
-        innerRadius:30,
-        outerRadius:40,
+        innerRadius:20,
+        outerRadius:25,
         innerFill:'orange',
         outerFill:'#ccc',
         text:'好久不见',
-        fontSize:15,
+        fontSize:12,
     });
     L2_hjbj.addToLayerOrGroup( L2_group );
-    var seventeenx  = 130 * Math.cos( 160 * Math.PI / 180 );
-    var seventeeny =  130 * Math.sin( 160 * Math.PI / 180 );
+    var seventeenx  = 80 * Math.cos( 160 * Math.PI / 180 );
+    var seventeeny =  80 * Math.sin( 160 * Math.PI / 180 );
     var L2_seventeen = new Rotate({
         x:seventeenx,
         y:seventeeny,
-        innerRadius:30,
-        outerRadius:40,
+        innerRadius:15,
+        outerRadius:30,
         innerFill:'pink',
         outerFill:'#ccc',
         text:'天狗舞踏会',
-        fontSize:15,
+        fontSize:12,
     });
     L2_seventeen.addToLayerOrGroup( L2_group );
 
@@ -97,17 +97,17 @@
         y:cenY,
     })
     // 添加第三层圆环 bdth
-    var bdthx = 220 * Math.cos( Math.PI * 45 / 180);
-    var bdthy = 220 * Math.sin( Math.PI * 45 / 180);
+    var bdthx = 140 * Math.cos( Math.PI * 45 / 180);
+    var bdthy = 140 * Math.sin( Math.PI * 45 / 180);
     var L3_bdth = new Rotate({
         x:bdthx,
         y:bdthy,
-        innerRadius:40,
-        outerRadius:50,
+        innerRadius:20,
+        outerRadius:30,
         innerFill:'pink',
         outerFill:'#ccc',
         text:'Luv Letter',
-        fontSize:15,
+        fontSize:12,
     })
     L3_bdth.addToLayerOrGroup( L3_group );
     bgLayer.draw();
