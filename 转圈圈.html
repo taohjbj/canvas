@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0"/>
+    <title></title>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+    <script src="bower_components/konva/konva.js"></script>
+    <script src="js/rotate.js"></script>
+</head>
+<body>
+<div id="container"></div>
+</body>
+<script>
+    var stage = new Konva.Stage({
+        width: window.innerWidth,
+        height: window.innerHeight,
+        container: 'container'
+    })
+    var bgLayer = new Konva.Layer();
+    stage.add(bgLayer);
+    var cenX = stage.width() / 2;
+    var cenY = stage.height() / 2;
+    var innerdashCircle = new Konva.Circle({
+        x: cenX,
+        y: cenY,
+        radius: 130,
+        stroke: '#ccc',
+        dash: [10, 5]
+    })
+    bgLayer.add(innerdashCircle);
+    // 外环虚线
+    var outerdashCircle = new Konva.Circle({
+        x: cenX,
+        y: cenY,
+        radius: 220,
+        stroke: '#ccc',
+        dash: [10, 5]
+    })
+    bgLayer.add(outerdashCircle);
+    // 最里层内圆
+    var innerCircle = new Rotate({
+        x:cenX,
+        y:cenY,
+        innerRadius:65,
+        innerFill:'#727898',
+        outerRadius:90,
+        outerFill:'#ccc',
+        text:'iMzhaotao',
+        fontSize:25,
+    })
+    innerCircle.addToLayerOrGroup( bgLayer );
+    // 创建动画层 2环
+    var animateLayer = new Konva.Layer();
+    stage.add(animateLayer);
+    // 创建2环圆组
+    var L2_group = new Konva.Group({
+        x:cenX,
+        y:cenY,
+    })
+    // L2好久不见圆
+    var hjbjx  = 130 * Math.cos( -60 * Math.PI / 180 );
+    var hjbjy = 130 * Math.sin( -60 * Math.PI / 180 );
+    var L2_hjbj = new Rotate({
+        x:hjbjx,
+        y:hjbjy,
+        innerRadius:30,
+        outerRadius:40,
+        innerFill:'orange',
+        outerFill:'#ccc',
+        text:'好久不见',
+        fontSize:15,
+    });
+    L2_hjbj.addToLayerOrGroup( L2_group );
+    var seventeenx  = 130 * Math.cos( 160 * Math.PI / 180 );
+    var seventeeny =  130 * Math.sin( 160 * Math.PI / 180 );
+    var L2_seventeen = new Rotate({
+        x:seventeenx,
+        y:seventeeny,
+        innerRadius:30,
+        outerRadius:40,
+        innerFill:'pink',
+        outerFill:'#ccc',
+        text:'天狗舞踏会',
+        fontSize:15,
+    });
+    L2_seventeen.addToLayerOrGroup( L2_group );
+
+    // 创建动画层3 L3_animateLayer
+    var L3_group = new Konva.Group({
+        x:cenX,
+        y:cenY,
+    })
+    // 添加第三层圆环 bdth
+    var bdthx = 220 * Math.cos( Math.PI * 45 / 180);
+    var bdthy = 220 * Math.sin( Math.PI * 45 / 180);
+    var L3_bdth = new Rotate({
+        x:bdthx,
+        y:bdthy,
+        innerRadius:40,
+        outerRadius:50,
+        innerFill:'pink',
+        outerFill:'#ccc',
+        text:'Luv Letter',
+        fontSize:15,
+    })
+    L3_bdth.addToLayerOrGroup( L3_group );
+    bgLayer.draw();
+    animateLayer.add(L2_group);
+    animateLayer.add(L3_group);
+    animateLayer.draw();
+
+    // 动画效果 每秒针旋转60度;
+    var rotateAngleSecond = 40;
+    var animate = new Konva.Animation(function( frame ){
+        var rotate = rotateAngleSecond * frame.timeDiff / 1000;
+        L2_group.rotate( rotate );
+        L2_group.getChildren().forEach(function(item,index){
+            item.rotate ( -rotate );
+        })
+        L3_group.rotate( -rotate );
+        L3_group.getChildren().forEach(function(item,index){
+            item.rotate( rotate );
+        })
+    },animateLayer);
+    animate.start();
+    animateLayer.on('mouseover',function(){
+        rotateAngleSecond = 10;
+    })
+    animateLayer.on('mouseout',function(){
+        rotateAngleSecond = 40;
+    })
+
+</script>
+</html>
+
+
+
+
